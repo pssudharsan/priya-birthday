@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For Priya 🤍</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Cinzel:wght@400;600&family=Lato:wght@300;400&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root { --cream: #fdf8f2; --gold: #c9a84c; --gold-light: #e8d5a3; --charcoal: #2a2a2a; --blush: #e8c4b8; --ink: #1a1a1a; }
+  body { background: var(--cream); color: var(--charcoal); font-family: 'Cormorant Garamond', serif; min-height: 100vh; overflow-x: hidden; }
+
+  #confetti-canvas { position: fixed; inset: 0; pointer-events: none; z-index: 998; opacity: 0; transition: opacity 0.5s; }
+
+  #gate { position: fixed; inset: 0; background: var(--cream); display: flex; flex-direction: column; align-items: center; justify-content: center; z-index: 500; transition: opacity 1.4s ease, visibility 1.4s ease; }
+  #gate.hide { opacity: 0; visibility: hidden; pointer-events: none; }
+  .gate-eyebrow { font-family: 'Cinzel', serif; font-size: 0.62rem; letter-spacing: 0.35em; text-transform: uppercase; color: var(--gold); margin-bottom: 14px; }
+  .gate-title { font-family: 'Cinzel', serif; font-size: clamp(1.8rem,6vw,3rem); font-weight: 600; color: var(--ink); text-align: center; letter-spacing: 0.05em; line-height: 1.2; }
+  .gate-sub { font-style: italic; font-size: 1rem; color: #bbb; margin-top: 8px; margin-bottom: 44px; }
+  .gate-deco { display: flex; align-items: center; gap: 14px; margin-bottom: 36px; }
+  .gate-deco::before, .gate-deco::after { content: ''; width: 60px; height: 1px; background: linear-gradient(to right, transparent, var(--gold-light), transparent); }
+  .gate-deco span { color: var(--gold); }
+  .gate-boxes { display: flex; gap: 16px; flex-wrap: wrap; justify-content: center; }
+  .gate-box { background: white; border: 1px solid #ecdfc8; border-radius: 2px; padding: 20px 28px 14px; min-width: 78px; text-align: center; box-shadow: 0 2px 20px rgba(201,168,76,0.07); }
+  .gate-num { font-family: 'Cinzel', serif; font-size: 2.2rem; font-weight: 600; color: var(--charcoal); line-height: 1; }
+  .gate-unit { font-family: 'Lato', sans-serif; font-size: 0.58rem; letter-spacing: 0.2em; text-transform: uppercase; color: #aaa; margin-top: 6px; }
+  .gate-bottom { margin-top: 48px; font-style: italic; font-size: 0.92rem; color: #ccc; }
+
+  .page { max-width: 680px; margin: 0 auto; padding: 60px 32px 100px; opacity: 0; transition: opacity 1.8s ease; }
+  .page.revealed { opacity: 1; }
+  .deco-line { width: 1px; height: 60px; background: linear-gradient(to bottom, transparent, var(--gold), transparent); margin: 0 auto 32px; }
+  .eyebrow { font-family: 'Cinzel', serif; font-size: 0.65rem; letter-spacing: 0.35em; text-transform: uppercase; color: var(--gold); text-align: center; }
+  h1 { font-family: 'Cinzel', serif; font-size: clamp(2.6rem,8vw,4.2rem); font-weight: 600; text-align: center; color: var(--ink); letter-spacing: 0.05em; line-height: 1.1; margin: 14px 0 6px; }
+  .subtitle { font-style: italic; font-size: 1.15rem; color: #888; text-align: center; }
+  .ornament { display: flex; align-items: center; gap: 16px; margin: 40px 0; }
+  .ornament::before, .ornament::after { content: ''; flex: 1; height: 1px; background: linear-gradient(to right, transparent, var(--gold-light), transparent); }
+  .ornament span { color: var(--gold); }
+  .message-card { background: white; border: 1px solid #ecdfc8; border-radius: 2px; padding: 42px 44px; position: relative; box-shadow: 0 4px 40px rgba(201,168,76,0.07); }
+  .message-card::before { content: '\201C'; font-family: 'Cormorant Garamond', serif; font-size: 7rem; color: var(--gold-light); position: absolute; top: -10px; left: 20px; line-height: 1; pointer-events: none; }
+  .message-card p { font-size: 1.13rem; line-height: 1.9; color: #444; font-weight: 300; }
+  .message-card p + p { margin-top: 18px; }
+  .poem-section { margin-top: 48px; }
+  .poem-label { font-family: 'Cinzel', serif; font-size: 0.6rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--gold); text-align: center; margin-bottom: 24px; }
+  .poem { text-align: center; font-style: italic; font-size: 1.08rem; line-height: 2; color: #555; }
+  .poem .pl { display: block; }
+  .footer { text-align: center; margin-top: 60px; }
+  .footer .from { font-style: italic; color: #aaa; font-size: 0.95rem; }
+  .footer .heart { color: var(--blush); font-size: 1.4rem; display: block; margin-top: 10px; animation: heartbeat 2.5s ease-in-out infinite; }
+  @keyframes heartbeat { 0%,100%{transform:scale(1)} 50%{transform:scale(1.18)} }
+</style>
+</head>
+<body>
+<canvas id="confetti-canvas"></canvas>
+
+<div id="gate">
+  <p class="gate-eyebrow">something special awaits</p>
+  <h2 class="gate-title">A gift is waiting<br>for Priya</h2>
+  <p class="gate-sub">unlocks at midnight ✦</p>
+  <div class="gate-deco"><span>✦</span></div>
+  <div class="gate-boxes">
+    <div class="gate-box"><span class="gate-num" id="cd-h">--</span><span class="gate-unit">Hours</span></div>
+    <div class="gate-box"><span class="gate-num" id="cd-m">--</span><span class="gate-unit">Minutes</span></div>
+    <div class="gate-box"><span class="gate-num" id="cd-s">--</span><span class="gate-unit">Seconds</span></div>
+  </div>
+  <p class="gate-bottom">come back when the clock strikes twelve 🤍</p>
+</div>
+
+<div class="page" id="main-page">
+  <div class="deco-line"></div>
+  <p class="eyebrow">A wish from the heart</p>
+  <h1>Happy Birthday,<br>Priya</h1>
+  <p class="subtitle">may this year be everything you deserve</p>
+  <div class="ornament"><span>✦</span></div>
+  <div class="message-card">
+    <p>There are people who walk into your life and quietly become the whole reason certain difficult days were survivable. You are that person for me.</p>
+    <p>Thank you for being there — not just when it was easy, but when it was everything but. For every moment you stayed when you could have walked away, for every word that lifted me when I was low — I carry those with me.</p>
+    <p>I wish you a year filled with the same warmth you so freely give to others. And I promise you this: wherever life takes us, I will be right there with you — always, for as long as you'll let me.</p>
+    <p>Happy birthday. 🤍</p>
+  </div>
+  <div class="poem-section">
+    <p class="poem-label">A small verse, just for you</p>
+    <div class="poem">
+      <span class="pl">In every storm you were my quiet shore,</span>
+      <span class="pl">Light that stayed when all else dimmed to grey.</span>
+      <span class="pl">Once a stranger — now the one I hold before</span>
+      <span class="pl">Vanishing fears that stole my voice away.</span>
+      <span class="pl">Every year that passes, one truth stays the same —</span>
+      <span class="pl" style="opacity:0">&nbsp;</span>
+      <span class="pl">You are rare, you are real, you are more than you know.</span>
+      <span class="pl">Only in your presence does the ordinary glow.</span>
+      <span class="pl">Under all my words lives what I cannot say —</span>
+      <span class="pl">so I'll just wish you joy on your most beautiful day.</span>
+    </div>
+  </div>
+  <div class="ornament" style="margin-top:52px"><span>✦</span></div>
+  <div class="footer">
+    <p class="from">with all that I have, always —</p>
+    <span class="heart">♡</span>
+  </div>
+</div>
+
+<script>
+  const target = new Date('2026-03-04T00:00:00');
+  function pad(n) { return String(n).padStart(2, '0'); }
+  function tick() {
+    const diff = target - new Date();
+    if (diff <= 0) { reveal(); return; }
+    document.getElementById('cd-h').textContent = pad(Math.floor(diff / 3600000));
+    document.getElementById('cd-m').textContent = pad(Math.floor((diff % 3600000) / 60000));
+    document.getElementById('cd-s').textContent = pad(Math.floor((diff % 60000) / 1000));
+    setTimeout(tick, 1000);
+  }
+  function reveal() {
+    document.getElementById('gate').classList.add('hide');
+    setTimeout(() => { document.getElementById('main-page').classList.add('revealed'); launchConfetti(); }, 900);
+  }
+  tick();
+  function launchConfetti() {
+    const canvas = document.getElementById('confetti-canvas');
+    canvas.style.opacity = '1';
+    const ctx = canvas.getContext('2d');
+    canvas.width = window.innerWidth; canvas.height = window.innerHeight;
+    const colors = ['#c9a84c','#e8d5a3','#e8c4b8','#d4af7a','#f5e6c8','#b8860b'];
+    const pieces = Array.from({length:160}, () => ({ x: Math.random()*canvas.width, y: Math.random()*-canvas.height, w: Math.random()*9+4, h: Math.random()*14+6, color: colors[Math.floor(Math.random()*colors.length)], rot: Math.random()*360, vx: (Math.random()-0.5)*2.5, vy: Math.random()*3.5+1.5, vr: (Math.random()-0.5)*4, opacity: Math.random()*0.55+0.4 }));
+    let frame = 0;
+    (function draw() {
+      ctx.clearRect(0,0,canvas.width,canvas.height);
+      pieces.forEach(p => { ctx.save(); ctx.translate(p.x,p.y); ctx.rotate(p.rot*Math.PI/180); ctx.globalAlpha=p.opacity; ctx.fillStyle=p.color; ctx.fillRect(-p.w/2,-p.h/2,p.w,p.h); ctx.restore(); p.x+=p.vx; p.y+=p.vy; p.rot+=p.vr; if(p.y>canvas.height+20){p.y=-20;p.x=Math.random()*canvas.width;} });
+      if(++frame<500) requestAnimationFrame(draw); else { ctx.clearRect(0,0,canvas.width,canvas.height); canvas.style.opacity='0'; }
+    })();
+  }
+</script>
+</body>
+</html>
